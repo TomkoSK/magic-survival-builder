@@ -259,6 +259,10 @@ function updateMagic(){
                     if(usedMagic["blizzard"] || usedMagic["meteror"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
                     break
+                case "demonEquation":
+                    if(usedMagic["fireball"] || usedMagic["energyBolt"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
                 case "frenzy":
                     if(usedMagic["flashShock"] || usedMagic["magicBolt"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
