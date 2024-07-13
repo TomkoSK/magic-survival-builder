@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(29, 29, 29);
+}
+
+#outerBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: grid;
+    grid-auto-rows: 450px;
+    grid-template-columns: repeat(auto-fill, 240px);
+    justify-items: center;
+    gap: 15px;
+}
+
+img {
+    border-radius: 6px;
+}
