@@ -1,5 +1,5 @@
-const ENABLED_OUTLINE = "green solid 5px";
-const DISABLED_FILTER = "blur(10px)";
+const ENABLED_OUTLINE = "green solid 0.25vw";
+const DISABLED_FILTER = "blur(8px)";
 const DISABLED_OUTLINE = "3px solid red";
 
 var usedMagic = {"magicBolt" : false, "fireball" : false, "thunderstorm" : false, "meteror" : false, "cyclone" : false, "electricShock" : false, 
@@ -10,12 +10,21 @@ var usedMagic = {"magicBolt" : false, "fireball" : false, "thunderstorm" : false
 
 function onResize(){
     var element = document.querySelector("main");
-    var width = -15;
-    while(width <= window.innerWidth){
-        width += 255;
+    var width = 0;
+    if(window.innerWidth <= 768){
+        while(width <= window.innerWidth){
+            width += 128;
+        }
+        width -= 128;
+        element.style.width = width+"px";
     }
-    width -= 255;
-    element.style.width = width+"px";
+    else{
+        while(width <= window.innerWidth){
+            width += 255;
+        }
+        width -= 255;
+        element.style.width = width+"px";
+    }
 }
 
 window.addEventListener("resize", onResize);
