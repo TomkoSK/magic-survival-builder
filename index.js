@@ -1,6 +1,14 @@
-const ENABLED_OUTLINE = "green solid 0.25vw";
-const DISABLED_FILTER = "blur(8px)";
-const DISABLED_OUTLINE = "3px solid red";
+var ENABLED_OUTLINE;
+var DISABLED_FILTER;
+
+if(window.innerWidth <= 768){
+ENABLED_OUTLINE = "green solid 1.5px";
+DISABLED_FILTER = "blur(4.5px)";
+}
+else{
+ENABLED_OUTLINE = "green solid 3px";
+DISABLED_FILTER = "blur(9px)";
+}
 
 var usedMagic = {"magicBolt" : false, "fireball" : false, "thunderstorm" : false, "meteror" : false, "cyclone" : false, "electricShock" : false, 
 "energyBolt" : false, "incineration" : false, "blizzard" : false, "tsunami" : false, "spirit" : false, "satellite" : false, "arcaneRay" : false,
