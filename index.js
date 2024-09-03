@@ -41,6 +41,7 @@ onResize();
 function getName(element) {
     var fullPath = element.src;
     var filename = fullPath.replace(/^.*[\\\/]/, '').split(".")[0];
+    console.log(filename)
     return filename;
 }
 
@@ -229,6 +230,34 @@ function setMagic(magicName, value){
         case "blackDeath":
             usedMagic["fireball"] = value;
             usedMagic["magicBolt"] = value;
+            break
+        case "lightningBreath":
+            usedMagic["electricShock"] = value;
+            usedMagic["incineration"] = value;
+            break
+        case "phoenix":
+            usedMagic["tsunami"] = value;
+            usedMagic["blizzard"] = value;
+            break
+        case "brandish":
+            usedMagic["flashShock"] = value;
+            usedMagic["spirit"] = value;
+            break
+        case "blackHole":
+            usedMagic["cyclone"] = value;
+            usedMagic["satellite"] = value;
+            break
+        case "genesis":
+            usedMagic["blizzard"] = value;
+            usedMagic["fireball"] = value;
+            break
+        case "astrape":
+            usedMagic["thunderstorm"] = value;
+            usedMagic["meteror"] = value;
+            break
+        case "supernova":
+            usedMagic["spirit"] = value;
+            usedMagic["energyBolt"] = value;
             break
     }
 }
@@ -421,6 +450,34 @@ function updateMagic(){
                     break
                 case "blackDeath":
                     if(usedMagic["fireball"] || usedMagic["magicBolt"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "lightningBreath":
+                    if(usedMagic["electricShock"] || usedMagic["incineration"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "phoenix":
+                    if(usedMagic["tsunami"] || usedMagic["blizzard"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "brandish":
+                    if(usedMagic["flashShock"] || usedMagic["spirit"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "blackHole":
+                    if(usedMagic["cyclone"] || usedMagic["satellite"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "genesis":
+                    if(usedMagic["blizzard"] || usedMagic["fireball"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "astrape":
+                    if(usedMagic["thunderstorm"] || usedMagic["meteror"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "supernova":
+                    if(usedMagic["spirit"] || usedMagic["energyBolt"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
                     break
             }
