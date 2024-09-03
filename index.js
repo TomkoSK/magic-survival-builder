@@ -253,7 +253,7 @@ function setMagic(magicName, value){
             break
         case "astrape":
             usedMagic["thunderstorm"] = value;
-            usedMagic["meteror"] = value;
+            usedMagic["meteor"] = value;
             break
         case "supernova":
             usedMagic["spirit"] = value;
