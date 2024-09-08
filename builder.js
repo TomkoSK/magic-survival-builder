@@ -186,6 +186,21 @@ function getSpecialTooltips(stats){
         else if(artifactName == "deathbell"){
             tooltips.push("All enemies near the character disappear every 30 seconds")
         }
+        else if(artifactName == "magicseal"){
+            tooltips.push("Limit the Damage Taken in one hit to 30% of the character's Max HP")
+        }
+        else if(artifactName == "singularity"){
+            tooltips.push("All Mana Orbs (Small) are changed to (Medium)")
+        }
+        else if(artifactName == "cube"){
+            tooltips.push("Increase the level of all un-mastered Normal Passive Magic by 1")
+        }
+        else if(artifactName == "brand"){
+            tooltips.push("Amplify ATK by 1% and increase Movement Speed by 1% for every 5% of HP lost")
+        }
+        else if(artifactName == "geometry"){
+            tooltips.push("Always retrieve 100% Mana when retrieving Mana.\nGive up 1 Mana Retrieval chance")
+        }
         //special artifacts
     }
     if(typeof stats != "string"){
@@ -368,6 +383,15 @@ function getSpecialTooltips(stats){
             }
             else if(key == "manaenemy"){
                 tooltips.push("Increase Mana Acquisition from killing enemies by "+value+"%")
+            }
+            else if(key == "timespeed"){
+                tooltips.push("Time flows "+value+"% faster")
+            }
+            else if(key == "gold"){
+                tooltips.push("Increase Gold Acquisition by "+value+"%")
+            }
+            else if(key == "enemysize"){
+                tooltips.push("Decrease the Size of all enemies by "+value+"%")
             }
             //Adding all the special stats as artifacts get added
         }
@@ -704,13 +728,13 @@ artifactItems.push(new ClickableModifier("Assassination", "artifactImages/assass
 artifactItems.push(new ClickableModifier("Amplifier", "artifactImages/amplifier.png", {}, "special", 1, "amplifier"))
 artifactItems.push(new ClickableModifier("Ether", "artifactImages/ether.png", {}, "special", 0, "ether"))
 artifactItems.push(new ClickableModifier("Death's Bell", "artifactImages/deathbell.png", {}, "special", 0, "deathbell"))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
-artifactItems.push(new ClickableModifier("War Flag", "artifactImages/warflag.png", {}, "special", 0))
+artifactItems.push(new ClickableModifier("Magic Seal", "artifactImages/magicseal.png", {}, "special", 0, "magicseal"))
+artifactItems.push(new ClickableModifier("Space-Time Circuit", "artifactImages/spacetimecircuit.png", {}, "special", 0, {"timespeed" : 24, "gold" : 24}))
+artifactItems.push(new ClickableModifier("Singularity", "artifactImages/singularity.png", {}, "special", 0, "singularity"))
+artifactItems.push(new ClickableModifier("Cube", "artifactImages/cube.png", {}, "special", 0, "cube"))
+artifactItems.push(new ClickableModifier("Brand", "artifactImages/brand.png", {}, "special", 0, "brand"))
+artifactItems.push(new ClickableModifier("Geometry", "artifactImages/geometry.png", {}, "special", 0, "geometry"))
+artifactItems.push(new ClickableModifier("Toy Castle", "artifactImages/toycastle.png", {}, "special", 0, {"enemysize" : 22, "enemyhp" : 11}))
 
 document.querySelector("#artifact-button").click()
 
@@ -880,6 +904,21 @@ function calculateStats() {
                     }
                     else if(artifactName == "deathbell"){
                         specialStats["unique"].push("All enemies near the character disappear every 30 seconds")
+                    }
+                    else if(artifactName == "magicseal"){
+                        specialStats["unique"].push("Limit the Damage Taken in one hit to 30% of the character's Max HP")
+                    }
+                    else if(artifactName == "singularity"){
+                        specialStats["unique"].push("All Mana Orbs (Small) are changed to (Medium)")
+                    }
+                    else if(artifactName == "cube"){
+                        specialStats["unique"].push("Increase the level of all un-mastered Normal Passive Magic by 1")
+                    }
+                    else if(artifactName == "brand"){
+                        specialStats["unique"].push("Amplify ATK by 1% and increase Movement Speed by 1% for every 5% of HP lost")
+                    }
+                    else if(artifactName == "geometry"){
+                        specialStats["unique"].push("Always retrieve 100% Mana when retrieving Mana.\nGive up 1 Mana Retrieval chance")
                     }
                     //all special artifacts like titan's will be here
                 }
@@ -1221,6 +1260,21 @@ function calculateStats() {
         else if(key=="manaenemy"){
             let li = document.createElement("li")
             li.innerText = "Increase Mana Acquisition from killing enemies by "+value+"%"
+            specialList.appendChild(li)      
+        }
+        else if(key=="timespeed"){
+            let li = document.createElement("li")
+            li.innerText = "Time flows "+value+"% faster"
+            specialList.appendChild(li)      
+        }
+        else if(key=="gold"){
+            let li = document.createElement("li")
+            li.innerText = "Increase Gold Acquisition by "+value+"%"
+            specialList.appendChild(li)      
+        }
+        else if(key=="enemysize"){
+            let li = document.createElement("li")
+            li.innerText = "Decrease the Size of all enemies by "+value+"%"
             specialList.appendChild(li)      
         }
         //all special stats artifacts go here
