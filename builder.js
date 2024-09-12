@@ -20,7 +20,12 @@ function getTooltips(stats) {
             tooltips.push("Increase Evasion by "+value+"%")
         }
         else if (key=="movement"){
-            tooltips.push("Increase Movement Speed by "+value+"%")
+            if(value < 0){
+                tooltips.push("Decrease Movement Speed by "+(-value)+"%")
+            }
+            else{
+                tooltips.push("Increase Movement Speed by "+value+"%")
+            }
         }
         else if(key=="critrate"){
             tooltips.push("Increase Critical Strike Rate by "+value+"%")
@@ -44,7 +49,13 @@ function getTooltips(stats) {
             tooltips.push("Increase All Magic Duration by "+value+"%")
         }
         else if(key=="cdr"){
+            if(value < 0){
+                tooltips.push("Increase All Magic Cooldown by "+(-value)+"%")
+            }
+            else
+            {
             tooltips.push("Decrease All Magic Cooldown by "+value+"%")
+            }
         }
         else if(key=="mana"){
             tooltips.push("Increase Mana Acquisition by "+value+"%")
@@ -200,6 +211,90 @@ function getSpecialTooltips(stats){
         }
         else if(artifactName == "geometry"){
             tooltips.push("Always retrieve 100% Mana when retrieving Mana.\nGive up 1 Mana Retrieval chance")
+        }
+        else if(artifactName == "hunter"){
+            tooltips.push("Amplify ATK by 1% for every 100 enemies killed<br>Stack resets when Amplification is at 25%")
+        }
+        else if(artifactName == "treasuremap"){
+            tooltips.push("2 Treasure Chests are created at a random location")
+        }
+        else if(artifactName == "cyborg"){
+            tooltips.push("Convert every 0.1% of HP Regen per sec. to 3% of ATK")
+        }
+        else if(artifactName == "pyramid"){
+            tooltips.push("Decrease a Magic's Cooldown by 1 second if it is 5 or more seconds")
+        }
+        else if(artifactName == "peacetreaty"){
+            tooltips.push("Decrease the amount of enemies by 15%")
+        }
+        else if(artifactName == "roster"){
+            tooltips.push("After killing 100 enemies, any damage dealt to the next 50 instakills them")
+        }
+        else if(artifactName == "werewolf"){
+            tooltips.push("Killing 2500 enemies activates the Berserk Rune effect")
+        }
+        else if(artifactName == "abyss"){
+            tooltips.push("Convert every 2% of Mana Acquisition to 1% of ATK")
+        }
+        else if(artifactName == "goldenroulette"){
+            tooltips.push("Obtain 1 random Legendary Artifact")
+        }
+        else if(artifactName == "jetengine"){
+            tooltips.push("When moving, ATK is Amplified by 15%")
+        }
+        else if(artifactName == "longinusspear"){
+            tooltips.push("Shoots down powerful lightning every 5 seconds")
+        }
+        else if(artifactName == "creation"){
+            tooltips.push("Every 5th cast of a spell reduces its Cooldown by 50%")
+        }
+        else if(artifactName == "magicsword"){
+            tooltips.push("Instakill an enemy whose HP is lower than 20%")
+        }
+        else if(artifactName == "accelerator"){
+            tooltips.push("Decrease All Magic Cooldown by 1% for every 3% of Movement Speed Increase")
+        }
+        else if(artifactName == "reaperscythe"){
+            tooltips.push("8% chance to instakill an enemy when dealing damage to it for the first time")
+        }
+        else if(artifactName == "ironmaiden"){
+            tooltips.push("15% chance to cause an Explosion when killing an enemy<br>(Explosion Damage is 75% of the enemy's Max HP)")
+        }
+        else if(artifactName == "hydra"){
+            tooltips.push("Deal 0.5% of the enemy's current HP as Additional Damage whenever dealing damage to an enemy<br>(Maximum additional damage : 30%)")
+        }
+        else if(artifactName == "ballista"){
+            tooltips.push("Evasion is converted to Critical Strike Rate")
+        }
+        else if(artifactName == "merlincape"){
+            tooltips.push("Amplify ATK by 33% of the current Mana percentage")
+        }
+        else if(artifactName == "necronomicon"){
+            tooltips.push("The character's Current HP can no longer be more than 50% of Max HP")
+        }
+        else if(artifactName == "akashicrecord"){
+            tooltips.push("Amplify ATK by 1% for every 3 levels<br>Increase Current Level and Max Level by 5")
+        }
+        else if(artifactName == "dna"){
+            tooltips.push("Amplify ATK by 1% for every 5000 enemies killed, up to 50%")
+        }
+        else if(artifactName == "sacrosanct"){
+            tooltips.push("When HP is 75% or higher, ATK is Amplified by 50%")
+        }
+        else if(artifactName == "joker"){
+            tooltips.push("50% chance to stack 1 additional multiplier when landing a Critical Strike")
+        }
+        else if(artifactName == "titanpower"){
+            tooltips.push("ATK Increase 1.5X")
+        }
+        else if(artifactName == "gaia"){
+            tooltips.push("Increase ATK by 3% for every 20 Max HP")
+        }
+        else if(artifactName == "domainofpower"){
+            tooltips.push("Gain 1 more Magic Combination chance")
+        }
+        else if(artifactName == "holychest"){
+            tooltips.push("Activate a random Rune effect every 45 seconds")
         }
         //special artifacts
     }
@@ -393,6 +488,31 @@ function getSpecialTooltips(stats){
             else if(key == "enemysize"){
                 tooltips.push("Decrease the Size of all enemies by "+value+"%")
             }
+            else if(key == "combinationdmg"){
+                tooltips.push("Increase Combination Magic Damage by "+value+"%")
+            }
+            else if(key == "elitehp"){
+                tooltips.push("Decrease the Max HP of Elite Monsters by "+value+"%")
+            }
+            else if(key == "treasurechest"){
+                if(value == 1){
+                    tooltips.push("Create "+value+" Treasure Chest nearby")
+                }
+                else{
+                    tooltips.push("Create "+value+" Treasure Chests nearby")
+                }
+            }
+            else if(key == "relicchest"){
+                if(value == 1){
+                    tooltips.push("Create "+value+" Relic Chest nearby")
+                }
+                else{
+                    tooltips.push("Create "+value+" Relic Chests nearby")
+                }
+            }
+            else if(key == "maxmagicdmg"){
+                tooltips.push("Increase Magic Damage by "+value+"% for all max level Magic")
+            }
             //Adding all the special stats as artifacts get added
         }
     }
@@ -487,6 +607,7 @@ class ClickableModifier {
         this.stats = statsValues
         this.specialEffects = specialEffects
         this.calculationOrder = calculationOrder
+        this.rarity = rarity
         itemDiv.classList.add("leftbox-item")
         itemDiv.classList.add("clickable-leftbox-item")
         if(rarity == "common"){//NOTE: add rest of borders
@@ -500,6 +621,9 @@ class ClickableModifier {
         }
         else if(rarity == "special"){
             itemDiv.classList.add("red-border")
+        }
+        else if(rarity == "legendary"){
+            itemDiv.classList.add("yellow-border")
         }
         let tooltip = document.createElement("span")
         tooltip.classList.add("tooltip")
@@ -545,6 +669,9 @@ class ClickableModifier {
                 else if(rarity=="special"){
                     itemDiv.style.border = "solid 2px rgba(107, 25, 34, 0.4)"
                 }
+                else if(rarity=="legendary"){
+                    itemDiv.style.border = "solid 2px rgba(161, 163, 51, 0.4)"
+                }
                 activeModifiers.splice(activeModifiers.indexOf(this), 1)
             }
             else{
@@ -561,6 +688,9 @@ class ClickableModifier {
                 }
                 else if(rarity=="special"){
                     itemDiv.style.border = "solid 2px rgba(107, 25, 34, 1)"
+                }
+                else if(rarity=="legendary"){
+                    itemDiv.style.border = "solid 2px rgba(161, 163, 51, 1)"
                 }
                 activeModifiers.push(this)
             }
@@ -735,6 +865,49 @@ artifactItems.push(new ClickableModifier("Cube", "artifactImages/cube.png", {}, 
 artifactItems.push(new ClickableModifier("Brand", "artifactImages/brand.png", {}, "special", 0, "brand"))
 artifactItems.push(new ClickableModifier("Geometry", "artifactImages/geometry.png", {}, "special", 0, "geometry"))
 artifactItems.push(new ClickableModifier("Toy Castle", "artifactImages/toycastle.png", {}, "special", 0, {"enemysize" : 22, "enemyhp" : 11}))
+artifactItems.push(new ClickableModifier("Hunter", "artifactImages/hunter.png", {}, "special", 0, "hunter"))
+artifactItems.push(new ClickableModifier("Treasure Map", "artifactImages/treasuremap.png", {"pickup" : 30}, "special", 0, "treasuremap"))
+artifactItems.push(new ClickableModifier("Cyborg", "artifactImages/cyborg.png", {}, "special", 1, "cyborg"))
+artifactItems.push(new ClickableModifier("Pyramid", "artifactImages/pyramid.png", {}, "special", 0, "pyramid"))
+artifactItems.push(new ClickableModifier("Strange Potion", "artifactImages/strangepotion.png", {"atk" : 35, "hp" : 35, "movement" : -10}, "special", 0, {"charactersize" : 35}))
+artifactItems.push(new ClickableModifier("AI Magic", "artifactImages/aimagic.png", {"cdr" : 5}, "special", 0, {"learnmagic" : 4}))
+artifactItems.push(new ClickableModifier("Dragontongue", "artifactImages/dragontongue.png", {}, "special", 0, {"combinationdmg" : 40}))
+artifactItems.push(new ClickableModifier("Peace Treaty", "artifactImages/peacetreaty.png", {}, "special", 0, ["peacetreaty", {"gold" : 15}]))
+artifactItems.push(new ClickableModifier("Halo", "artifactImages/halo.png", {"allmagicdmg" : 30}, "special", 0))
+artifactItems.push(new ClickableModifier("Basilisk", "artifactImages/basilisk.png", {}, "special", 0, {"elitehp" : 20}))
+artifactItems.push(new ClickableModifier("Roster", "artifactImages/roster.png", {}, "special", 0, "roster"))
+artifactItems.push(new ClickableModifier("Werewolf", "artifactImages/werewolf.png", {"critrate" : 3}, "special", 0, "werewolf"))
+artifactItems.push(new ClickableModifier("Abyss", "artifactImages/abyss.png", {}, "special", 1, "abyss"))
+artifactItems.push(new ClickableModifier("Golden Roulette", "artifactImages/goldenroulette.png", {}, "special", 0, "goldenroulette"))
+artifactItems.push(new ClickableModifier("Jet Engine", "artifactImages/jetengine.png", {"movement" : 5}, "special", 0, "jetengine"))
+artifactItems.push(new ClickableModifier("Longinus' Spear", "artifactImages/longinusspear.png", {}, "special", 0, "longinusspear"))
+artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {"allmagicdmg" : 50}, "legendary", 0, "creation"))
+artifactItems.push(new ClickableModifier("Uranium", "artifactImages/uranium.png", {"atk" : 100, "size" : 25, "cdr" : -10}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Magic Sword", "artifactImages/magicsword.png", {}, "legendary", 0, "magicsword"))
+artifactItems.push(new ClickableModifier("Opulence", "artifactImages/opulence.png", {}, "legendary", 0, {"treasurechest" : 2, "relicchest" : 1}))
+artifactItems.push(new ClickableModifier("Accelerator", "artifactImages/accelerator.png", {}, "legendary", 1, "accelerator"))
+artifactItems.push(new ClickableModifier("Overmind", "artifactImages/overmind.png", {}, "legendary", 0, {"maxmagicdmg" : 100}))
+artifactItems.push(new ClickableModifier("Genome Map", "artifactImages/genomemap.png", {}, "legendary", 0, {"enemyhp" : 20}))
+artifactItems.push(new ClickableModifier("Reaper's Scythe", "artifactImages/reaperscythe.png", {}, "legendary", 0, ["reaperscythe", {"enemyhp" : 13}]))
+artifactItems.push(new ClickableModifier("Iron Maiden", "artifactImages/ironmaiden.png", {}, "legendary", 0, "ironmaiden"))
+artifactItems.push(new ClickableModifier("Hydra", "artifactImages/hydra.png", {}, "legendary", 0, "hydra"))
+artifactItems.push(new ClickableModifier("Ballista", "artifactImages/ballista.png", {}, "legendary", 1, "ballista"))
+artifactItems.push(new ClickableModifier("Merlin's Cape", "artifactImages/merlincape.png", {"amp" : 20}, "legendary", 0, "merlincape"))
+artifactItems.push(new ClickableModifier("Executioner's Ax", "artifactImages/executionerax.png", {"critstrike" : 100}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Necronomicon", "artifactImages/necronomicon.png", {"amp" : 50}, "legendary", 0, "necronomicon"))
+artifactItems.push(new ClickableModifier("Akashic Record", "artifactImages/akashicrecord.png", {}, "legendary", 0, "akashicrecord"))
+artifactItems.push(new ClickableModifier("DNA", "artifactImages/dna.png", {}, "legendary", 0, "dna"))
+artifactItems.push(new ClickableModifier("Sacrosanct", "artifactImages/sacrosanct.png", {"dmgtaken" : 20}, "legendary", 0, "sacrosanct"))
+artifactItems.push(new ClickableModifier("Dragon's Magic", "artifactImages/dragonmagic.png", {"amp" : 32, "atk" : 32}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Joker", "artifactImages/joker.png", {}, "legendary", 0, "joker"))
+artifactItems.push(new ClickableModifier("Titan's Power", "artifactImages/titanpower.png", {}, "legendary", 2, "titanpower"))
+artifactItems.push(new ClickableModifier("Gaia", "artifactImages/gaia.png", {"hp" : 50}, "legendary", 1, "gaia"))
+artifactItems.push(new ClickableModifier("Domain of Power", "artifactImages/domainofpower.png", {"cdr" : -10}, "legendary", 0, "domainofpower"))
+artifactItems.push(new ClickableModifier("Holy Chest", "artifactImages/holychest.png", {}, "legendary", 0, ["holychest", {"enemyhp" : 10}]))
+artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
+
 
 document.querySelector("#artifact-button").click()
 
@@ -762,7 +935,7 @@ function calculateStats() {
         }
     })
 
-    for(let modifierOrder = 0; modifierOrder < 2; modifierOrder++){
+    for(let modifierOrder = 0; modifierOrder < 3; modifierOrder++){
         activeModifiers.forEach((modifier) =>{
             if(modifierOrder != modifier.calculationOrder){
                 return
@@ -920,6 +1093,106 @@ function calculateStats() {
                     else if(artifactName == "geometry"){
                         specialStats["unique"].push("Always retrieve 100% Mana when retrieving Mana.\nGive up 1 Mana Retrieval chance")
                     }
+                    else if(artifactName == "hunter"){
+                        specialStats["unique"].push("Amplify ATK by 1% for every 100 enemies killed\nStack resets when Amplification is at 25%")
+                    }
+                    else if(artifactName == "treasuremap"){
+                        specialStats["unique"].push("2 Treasure Chests are created at a random location")
+                    }
+                    else if(artifactName == "cyborg"){
+                        stats["atk"] += rounded(stats["hpregen"], 1)*30
+                        stats["hpregen"] = 0
+                    }
+                    else if(artifactName == "pyramid"){
+                        specialStats["unique"].push("Decrease a Magic's Cooldown by 1 second if it is 5 or more seconds")
+                    }
+                    else if(artifactName == "peacetreaty"){
+                        specialStats["unique"].push("Decrease the amount of enemies by 15%")
+                    }
+                    else if(artifactName == "roster"){
+                        specialStats["unique"].push("After killing 100 enemies, any damage dealt to the next 50 instakills them")
+                    }
+                    else if(artifactName == "werewolf"){
+                        specialStats["unique"].push("Killing 2500 enemies activates the Berserk Rune effect")
+                    }
+                    else if(artifactName == "abyss"){
+                        if(!stats["mana"] % 2 == 0){
+                            stats["mana"] -= 1
+                        }
+                        stats["atk"] += stats["mana"]/2
+                        stats["mana"] = 0
+                    }
+                    else if(artifactName == "goldenroulette"){
+                        specialStats["unique"].push("Obtain 1 random Legendary Artifact")
+                    }
+                    else if(artifactName == "jetengine"){
+                        specialStats["unique"].push("When moving, ATK is Amplified by 15%")
+                    }
+                    else if(artifactName == "longinusspear"){
+                        specialStats["unique"].push("Shoots down powerful lightning every 5 seconds")
+                    }
+                    else if(artifactName == "creation"){
+                        specialStats["unique"].push("Every 5th cast of a spell reduces its Cooldown by 50%")
+                    }
+                    else if(artifactName == "magicsword"){
+                        specialStats["unique"].push("Instakill an enemy whose HP is lower than 20%")
+                    }
+                    else if(artifactName == "accelerator"){
+                        let moveSpeed = stats["movement"]-100
+                        while(moveSpeed % 3 != 0){
+                            moveSpeed -= 1
+                        }
+                        let cdrValue = moveSpeed/3
+                        console.log(moveSpeed, cdrValue)
+                        stats["cdr"]*= 1-cdrValue/100
+                    }
+                    else if(artifactName == "reaperscythe"){
+                        specialStats["unique"].push("8% chance to instakill an enemy when dealing damage to it for the first time")
+                    }
+                    else if(artifactName == "ironmaiden"){
+                        specialStats["unique"].push("15% chance to cause an Explosion when killing an enemy\n(Explosion Damage is 75% of the enemy's Max HP)")
+                    }
+                    else if(artifactName == "hydra"){
+                        specialStats["unique"].push("Deal 0.5% of the enemy's current HP as Additional Damage whenever dealing damage to an enemy\n(Maximum additional damage : 30%)")
+                    }
+                    else if(artifactName == "ballista"){
+                        stats["critrate"] += stats["evasion"]
+                        stats["evasion"] = 0
+                    }
+                    else if(artifactName == "merlincape"){
+                        specialStats["unique"].push("Amplify ATK by 33% of the current Mana percentage")
+                    }
+                    else if(artifactName == "necronomicon"){
+                        specialStats["unique"].push("The character's Current HP can no longer be more than 50% of Max HP")
+                    }
+                    else if(artifactName == "akashicrecord"){
+                        specialStats["unique"].push("Amplify ATK by 1% for every 3 levels\nIncrease Current Level and Max Level by 5")
+                    }
+                    else if(artifactName == "dna"){
+                        specialStats["unique"].push("Amplify ATK by 1% for every 5000 enemies killed, up to 50%")
+                    }
+                    else if(artifactName == "sacrosanct"){
+                        specialStats["unique"].push("When HP is 75% or higher, ATK is Amplified by 50%")
+                    }
+                    else if(artifactName == "joker"){
+                        specialStats["unique"].push("50% chance to stack 1 additional multiplier when landing a Critical Strike")
+                    }
+                    else if(artifactName == "titanpower"){
+                        stats["atk"] += (stats["atk"]-100)*0.5
+                    }
+                    else if(artifactName == "gaia"){
+                        let hp = stats["hp"]
+                        while(hp % 20 != 0){
+                            hp -= 1
+                        }
+                        stats["atk"] += hp/20*3
+                    }
+                    else if(artifactName == "domainofpower"){
+                        specialStats["unique"].push("Gain 1 more Magic Combination chance")
+                    }
+                    else if(artifactName == "holychest"){
+                        specialStats["unique"].push("Activate a random Rune effect every 45 seconds")
+                    }
                     //all special artifacts like titan's will be here
                 }
                 if(typeof modifier.specialEffects != "string"){
@@ -931,7 +1204,7 @@ function calculateStats() {
                         artifactSpecialStats = modifier.specialEffects
                     }
                     for(const[key, value] of Object.entries(artifactSpecialStats)){
-                        if(key.endsWith("cdr") || key == "enemyhp"){
+                        if(key.endsWith("cdr") || key.endsWith("hp")){
                             if(!(key in specialStats)){specialStats[key] = 1}
                             specialStats[key] *= 1-value/100
                         }
@@ -1275,6 +1548,41 @@ function calculateStats() {
         else if(key=="enemysize"){
             let li = document.createElement("li")
             li.innerText = "Decrease the Size of all enemies by "+value+"%"
+            specialList.appendChild(li)      
+        }
+        else if(key=="combinationdmg"){
+            let li = document.createElement("li")
+            li.innerText = "Increase Combination Magic Damage by "+value+"%"
+            specialList.appendChild(li)      
+        }
+        else if(key=="elitehp"){
+            let li = document.createElement("li")
+            li.innerText = "Decrease the Max HP of Elite Monsters by "+rounded(100-value*100, 1)+"%"
+            specialList.appendChild(li)      
+        }
+        else if(key=="treasurechest"){
+            let li = document.createElement("li")
+            if(value == 1){
+                li.innerText = "Create 1 Treasure Chest nearby"
+            }
+            else{
+                li.innerText = "Create "+value+" Treasure Chests nearby"
+            }
+            specialList.appendChild(li)      
+        }
+        else if(key=="relicchest"){
+            let li = document.createElement("li")
+            if(value == 1){
+                li.innerText = "Create 1 Relic Chest nearby"
+            }
+            else{
+                li.innerText = "Create "+value+" Relic Chests nearby"
+            }
+            specialList.appendChild(li)      
+        }
+        else if(key=="maxmagicdmg"){
+            let li = document.createElement("li")
+            li.innerText = "Increase Magic Damage by "+value+"% for all max level Magic"
             specialList.appendChild(li)      
         }
         //all special stats artifacts go here

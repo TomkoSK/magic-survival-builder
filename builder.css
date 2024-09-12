@@ -76,6 +76,18 @@ main {
     border : solid 2px rgb(121,119,120)
 }
 
+.yellow-border {
+    border : solid 2px rgb(161, 163, 51)
+}
+
+.clickable-leftbox-item.yellow-border {
+    border : solid 2px rgba(161, 163, 51, 0.4)
+}
+
+.yellow-border .tooltip {
+    border : solid 2px rgb(161, 163, 51)
+}
+
 .blue-border {
     border : solid 2px rgb(47,77,97)
 }
