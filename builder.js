@@ -296,6 +296,21 @@ function getSpecialTooltips(stats){
         else if(artifactName == "holychest"){
             tooltips.push("Activate a random Rune effect every 45 seconds")
         }
+        else if(artifactName == "crown"){
+            tooltips.push("Amplify ATK by 1% for each Epic Artifact owned<br>Amplify ATK by 5% for each Special Artifact owned")
+        }
+        else if(artifactName == "eclipse"){
+            tooltips.push("Deal a maximum of 45% of the HP the target lost as additional Damage")
+        }
+        else if(artifactName == "excalibur"){
+            tooltips.push("Create an Aura around the character and amplify ATK by 1% for each enemy inside the area")
+        }
+        else if(artifactName == "nexus"){
+            tooltips.push("Choose one Attack magic and increase Damage by 200%")
+        }
+        else if(artifactName == "dragonheart"){
+            tooltips.push("ATK Amplify 1.3X")
+        }
         //special artifacts
     }
     if(typeof stats != "string"){
@@ -513,6 +528,12 @@ function getSpecialTooltips(stats){
             else if(key == "maxmagicdmg"){
                 tooltips.push("Increase Magic Damage by "+value+"% for all max level Magic")
             }
+            else if(key == "manafrequency"){
+                tooltips.push("Mana Orbs are created "+value+"% more frequently")
+            }
+            else if(key == "maxlevel"){
+                tooltips.push("Increase Max Level by "+value)
+            }
             //Adding all the special stats as artifacts get added
         }
     }
@@ -522,6 +543,14 @@ function getSpecialTooltips(stats){
 
 function fixTooltipPositions(){
     artifactItems.forEach((modifier)=>{
+        if(modifier instanceof ClickableModifier){
+            modifier.element.querySelector(".tooltip").style.left = "90%"
+            if(modifier.element.querySelector(".tooltip").getBoundingClientRect().right > modifier.element.parentElement.clientWidth){
+                modifier.element.querySelector(".tooltip").style.left = (modifier.element.parentElement.clientWidth-modifier.element.offsetLeft-modifier.element.querySelector(".tooltip").clientWidth)+"px"
+            }
+        }
+    })
+    magicItems.forEach((modifier)=>{
         if(modifier instanceof ClickableModifier){
             modifier.element.querySelector(".tooltip").style.left = "90%"
             if(modifier.element.querySelector(".tooltip").getBoundingClientRect().right > modifier.element.parentElement.clientWidth){
@@ -619,7 +648,7 @@ class ClickableModifier {
         else if(rarity == "epic"){
             itemDiv.classList.add("purple-border")
         }
-        else if(rarity == "special"){
+        else if(rarity == "special" || rarity == "specialmagic"){
             itemDiv.classList.add("red-border")
         }
         else if(rarity == "legendary"){
@@ -666,7 +695,7 @@ class ClickableModifier {
                 else if(rarity == "epic"){
                     itemDiv.style.border = "solid 2px rgba(82, 40, 90, 0.4)"
                 }
-                else if(rarity=="special"){
+                else if(rarity=="special" || rarity == "specialmagic"){
                     itemDiv.style.border = "solid 2px rgba(107, 25, 34, 0.4)"
                 }
                 else if(rarity=="legendary"){
@@ -686,7 +715,7 @@ class ClickableModifier {
                 else if(rarity=="epic"){
                     itemDiv.style.border = "solid 2px rgba(82, 40, 90, 1)"
                 }
-                else if(rarity=="special"){
+                else if(rarity=="special" || rarity == "specialmagic"){
                     itemDiv.style.border = "solid 2px rgba(107, 25, 34, 1)"
                 }
                 else if(rarity=="legendary"){
@@ -755,9 +784,32 @@ magicItems.push(new PassiveMagic("Haste", "passiveImages/haste.png", 2, [0, 10, 
 magicItems.push(new PassiveMagic("Arcane Effuse", "passiveImages/arcaneeffuse.png", 3, [0, 5, 10, 15], "size"))
 magicItems.push(new PassiveMagic("Concentration", "passiveImages/concentration.png", 3, [0, 10, 20, 30], "duration"))
 magicItems.push(new PassiveMagic("Snipe", "passiveImages/snipe.png", 3, [0, 5, 10, 15], "critrate"))
+magicItems.push(new PassiveMagic("Explorer", "passiveImages/explorer.png", 3, [0, 33, 66, 99], "pickup"))
 
 magicItems.forEach((item) => {arrowModifiers.push(item)})
 
+magicItems.push(new ClickableModifier("Lord of Fire", "passiveImages/lordoffire.png", {}, "specialmagic", 0, {"fireballdmg" : 25, "meteordmg" : 25, "incinerationdmg" : 25, "lavazonedmg" : 25}))
+magicItems.push(new ClickableModifier("Stormy Clouds", "passiveImages/stormyclouds.png", {}, "specialmagic", 0, {"thunderstormdmg" : 25, "shockdmg" : 25, "electriczonedmg" : 25, "flashdmg" : 25}))
+magicItems.push(new ClickableModifier("Nature's Wrath", "passiveImages/naturewrath.png", {}, "specialmagic", 0, {"cyclonedmg" : 25, "blizzarddmg" : 25, "tsunamidmg" : 25, "novadmg" : 25}))
+magicItems.push(new ClickableModifier("Energy Engineering", "passiveImages/energyengineering.png", {}, "specialmagic", 0, {"energyboltdmg" : 25, "raydmg" : 25, "spiritdmg" : 25, "satellitedmg" : 25}))
+magicItems.push(new ClickableModifier("Arcana", "passiveImages/arcana.png", {"atk" : 15}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Guardian Angel", "passiveImages/guardianangel.png", {"hp" : 30}, "specialmagic", 0, {"revive" : 1}))
+magicItems.push(new ClickableModifier("Silent Casting", "passiveImages/silentcasting.png", {"cdr" : 7}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("War Magic", "passiveImages/warmagic.png", {"atk" : 8, "size" : 8}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Timekeeper", "passiveImages/timekeeper.png", {"duration" : 12}, "specialmagic", 0, {"runeduration" : 12}))
+magicItems.push(new ClickableModifier("Pioneer", "passiveImages/pioneer.png", {"movement" : 3, "pickup" : 50}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Smite", "passiveImages/smite.png", {"critstrike" : 30}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Seal", "passiveImages/seal.png", {}, "specialmagic", 0, {"enemymovement" : 8}))
+magicItems.push(new ClickableModifier("Curse", "passiveImages/curse.png", {}, "specialmagic", 0, {"enemyhp" : 6}))
+magicItems.push(new ClickableModifier("Chakra", "passiveImages/chakra.png", {"allmagicdmg" : 20}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Mana Factory", "passiveImages/manafactory.png", {}, "specialmagic", 0, {"manafrequency" : 20}))
+magicItems.push(new ClickableModifier("Doctor", "passiveImages/doctor.png", {}, "specialmagic", 0, {"maxlevel" : 3}))
+magicItems.push(new ClickableModifier("Blood Magic", "passiveImages/bloodmagic.png", {"amp" : 10, "hpregen" : -0.25}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Adrenaline", "passiveImages/adrenaline.png", {"atk" : 5, "critrate" : 5, "movement" : 5}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Juggernaut", "passiveImages/juggernaut.png", {"atk" : 10, "dmgtaken" : 15}, "specialmagic", 0))
+magicItems.push(new ClickableModifier("Priest", "passiveImages/priest.png", {"hpregen" : 0.3}, "specialmagic", 0, {"enemyhp" : 3}))
+magicItems.push(new ClickableModifier("Eldritch", "passiveImages/eldritch.png", {}, "specialmagic", 0, {"elitehp" : 10}))
+magicItems.push(new ClickableModifier("Noblesse", "passiveImages/noblesse.png", {}, "specialmagic", 0, {"treasurechest" : 1}))
 
 artifactItems.push(new ClickableModifier("Blood Pack", "artifactImages/bloodpack.png", {"hp" : 30, "hpregen" : 0.3}, "common", 0))
 artifactItems.push(new ClickableModifier("Shadow Cape", "artifactImages/shadowcape.png", {"evasion" : 10}, "common", 0))
@@ -904,12 +956,16 @@ artifactItems.push(new ClickableModifier("Titan's Power", "artifactImages/titanp
 artifactItems.push(new ClickableModifier("Gaia", "artifactImages/gaia.png", {"hp" : 50}, "legendary", 1, "gaia"))
 artifactItems.push(new ClickableModifier("Domain of Power", "artifactImages/domainofpower.png", {"cdr" : -10}, "legendary", 0, "domainofpower"))
 artifactItems.push(new ClickableModifier("Holy Chest", "artifactImages/holychest.png", {}, "legendary", 0, ["holychest", {"enemyhp" : 10}]))
-artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Crown", "artifactImages/crown.png", {}, "legendary", 0, "crown"))
+artifactItems.push(new ClickableModifier("Ouroboros", "artifactImages/ouroboros.png", {"cdr" : 15}, "legendary", 0))
+artifactItems.push(new ClickableModifier("Eclipse", "artifactImages/eclipse.png", {}, "legendary", 0, "eclipse"))
+artifactItems.push(new ClickableModifier("Excalibur", "artifactImages/excalibur.png", {}, "legendary", 0, "excalibur"))
+artifactItems.push(new ClickableModifier("Nexus", "artifactImages/nexus.png", {}, "legendary", 0, "nexus"))
+artifactItems.push(new ClickableModifier("Dragon's Heart", "artifactImages/dragonheart.png", {}, "legendary", 2, "dragonheart"))
 artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
 artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
 
-
-document.querySelector("#artifact-button").click()
+document.querySelector("#magic-button").click()
 
 function calculateStats() {
     let stats = {"hp" : 200, "hpregen" : 0, "dmgtaken" : 1, "evasion" : 0, "movement" : 100, "critrate" : 3, "critstrike" : 200,
@@ -1100,7 +1156,7 @@ function calculateStats() {
                         specialStats["unique"].push("2 Treasure Chests are created at a random location")
                     }
                     else if(artifactName == "cyborg"){
-                        stats["atk"] += rounded(stats["hpregen"], 1)*30
+                        stats["atk"] += stats["hpregen"]*30
                         stats["hpregen"] = 0
                     }
                     else if(artifactName == "pyramid"){
@@ -1193,6 +1249,30 @@ function calculateStats() {
                     else if(artifactName == "holychest"){
                         specialStats["unique"].push("Activate a random Rune effect every 45 seconds")
                     }
+                    else if(artifactName == "crown"){
+                        activeModifiers.forEach((modifier)=>{
+                            if(modifier instanceof ClickableModifier){
+                                if(modifier.rarity == "special"){
+                                    stats["amp"] += 5
+                                }
+                                else if(modifier.rarity == "epic"){
+                                    stats["amp"] += 1
+                                }
+                            }
+                        })
+                    }
+                    else if(artifactName == "eclipse"){
+                        specialStats["unique"].push("Deal a maximum of 45% of the HP the target lost as additional Damage")
+                    }
+                    else if(artifactName == "excalibur"){
+                        specialStats["unique"].push("Create an Aura around the character and amplify ATK by 1% for each enemy inside the area")
+                    }
+                    else if(artifactName == "nexus"){
+                        specialStats["unique"].push("Choose one Attack magic and increase Damage by 200%")
+                    }
+                    else if(artifactName == "dragonheart"){
+                        stats["amp"]*=1.3
+                    }
                     //all special artifacts like titan's will be here
                 }
                 if(typeof modifier.specialEffects != "string"){
@@ -1235,7 +1315,7 @@ function calculateStats() {
     firstStats.item(7).querySelector("span").innerHTML = stats["allmagicdmg"]+"%"
     let secondStats = statLists.children.item(1).children
     secondStats.item(0).querySelector("span").innerHTML = stats["atk"]
-    secondStats.item(1).querySelector("span").innerHTML = "+"+stats["amp"]+"%"
+    secondStats.item(1).querySelector("span").innerHTML = "+"+rounded(stats["amp"], 1)+"%"
     secondStats.item(2).querySelector("span").innerHTML = "+"+stats["size"]+"%"
     secondStats.item(3).querySelector("span").innerHTML = "+"+stats["duration"]+"%"
     if(-100+stats["cdr"]*100 >= 0){
@@ -1583,6 +1663,16 @@ function calculateStats() {
         else if(key=="maxmagicdmg"){
             let li = document.createElement("li")
             li.innerText = "Increase Magic Damage by "+value+"% for all max level Magic"
+            specialList.appendChild(li)      
+        }
+        else if(key=="manafrequency"){
+            let li = document.createElement("li")
+            li.innerText = "Mana Orbs are created "+value+"% more frequently"
+            specialList.appendChild(li)      
+        }
+        else if(key=="maxlevel"){
+            let li = document.createElement("li")
+            li.innerText = "Increase Max Level by "+value
             specialList.appendChild(li)      
         }
         //all special stats artifacts go here
