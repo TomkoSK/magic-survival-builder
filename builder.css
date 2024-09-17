@@ -64,6 +64,10 @@ main {
     border: solid 2px rgb(110,217,74);
 }
 
+.research-border {
+    border: solid 1px rgb(255,236,137)
+}
+
 .gray-border {
     border : solid 2px rgb(121,119,120)
 }
@@ -198,6 +202,28 @@ main {
     border-radius: 5px;
 }
 
+.leftbox-item .research-circles {
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    margin-top: 3%;
+}
+
+.leftbox-item .research-circles .full {
+    width: 5px;
+    height: 5px;
+    border: solid 2px rgb(255,236,137);
+    background-color: rgb(255,236,137);
+    border-radius: 5px;
+}
+
+.leftbox-item .research-circles .empty {
+    width: 5px;
+    height: 5px;
+    border: solid 2px rgb(118,118,118);
+    border-radius: 5px;
+}
+
 .arrows {
     display: flex;
     justify-content: space-between;
@@ -286,4 +312,8 @@ main {
     font-size: 250%;
     margin: 0;
     padding: 0;
+}
+
+#research-point-count .point-count {
+    font-size: 1000%;
 }

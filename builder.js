@@ -628,6 +628,74 @@ class PassiveMagic {
     }
 }
 
+class ResearchModifier {
+    constructor(name, imageUrl, circleAmount, values, stat){
+        this.circleAmount = circleAmount
+        this.values = values
+        this.stat = stat
+        let itemDiv = document.createElement("div")
+        this.element = itemDiv
+        itemDiv.classList.add("leftbox-item")
+        itemDiv.classList.add("research-border")
+        let image = document.createElement("img")
+        image.src = imageUrl
+        image.draggable = false
+        itemDiv.appendChild(image)
+        let span = document.createElement("span")
+        span.innerText = name
+        itemDiv.appendChild(span)
+        let circleDiv = document.createElement("div")
+        circleDiv.classList.add("research-circles")
+        for(let i = 0; i < circleAmount; i++){
+            let circle = document.createElement("span")
+            circle.classList.add("empty")
+            circleDiv.appendChild(circle)
+        }
+        itemDiv.appendChild(circleDiv)
+        this.circleDiv = circleDiv
+        let arrowDiv = document.createElement("div")
+        arrowDiv.classList.add("arrows")
+        let leftArrow = document.createElement("img")
+        leftArrow.src = "leftarrow.png"
+        arrowDiv.appendChild(leftArrow)
+        let rightArrow = document.createElement("img")
+        rightArrow.src = "rightarrow.png"
+        arrowDiv.appendChild(rightArrow)
+        itemDiv.appendChild(arrowDiv)
+        document.querySelector("#leftbox-content").appendChild(itemDiv)
+        this.fullCircleAmount = 0
+        leftArrow.addEventListener("click", ()=>{
+            this.fullCircleAmount -= 1
+            if(this.fullCircleAmount < 0){
+                this.fullCircleAmount = 0
+            }
+            this.refreshCircles()
+        })
+        rightArrow.addEventListener("click", ()=>{
+            this.fullCircleAmount += 1
+            if(this.fullCircleAmount > circleAmount){
+                this.fullCircleAmount = circleAmount
+            }
+            this.refreshCircles()
+        })
+    }
+
+    refreshCircles(){
+        let circles = this.circleDiv.children
+        for(let i = 0; i < this.fullCircleAmount; i++){
+            let circle = circles.item(i)
+            circle.removeAttribute("class")
+            circle.classList.add("full")
+        }
+        for(let i = this.fullCircleAmount; i < this.circleAmount; i++){
+            let circle = circles.item(i)
+            circle.removeAttribute("class")
+            circle.classList.add("empty")
+        }
+        calculateStats()
+    }
+}
+
 class ClickableModifier {
     constructor(name, imageUrl, statsValues, rarity, calculationOrder, specialEffects=null){
         let itemDiv = document.createElement("div")
@@ -739,6 +807,7 @@ const activeModifiers = []
 calculateStats()
 
 document.querySelector("#research-button").addEventListener("click", () => {
+    document.querySelector("#research-point-count").style.display = "flex"
     researchItems.forEach((item)=>{
         item.element.style.display = "flex"
     })
@@ -752,6 +821,7 @@ document.querySelector("#research-button").addEventListener("click", () => {
 })
 
 document.querySelector("#magic-button").addEventListener("click", () => {
+    document.querySelector("#research-point-count").style.display = "none"
     researchItems.forEach((item)=>{
         item.element.style.display = "none"
     })
@@ -765,6 +835,7 @@ document.querySelector("#magic-button").addEventListener("click", () => {
 })
 
 document.querySelector("#artifact-button").addEventListener("click", () => {
+    document.querySelector("#research-point-count").style.display = "none"
     researchItems.forEach((item)=>{
         item.element.style.display = "none"
     })
@@ -776,6 +847,27 @@ document.querySelector("#artifact-button").addEventListener("click", () => {
     })
     fixTooltipPositions()
 })
+
+researchItems.push(new ResearchModifier("Intelligence", "researchImages/intelligence.png", 5, [0, 5, 10, 15, 20, 25], "atk"))
+researchItems.push(new ResearchModifier("Vitality", "researchImages/vitality.png", 5, [0, 20, 30, 40, 50, 60], "vitality"))
+researchItems.push(new ResearchModifier("Mana Refining", "researchImages/manarefining.png", 6, [0, 5, 8, 11, 14, 17, 20], "mana"))
+researchItems.push(new ResearchModifier("Fast Casting", "researchImages/fastcasting.png", 5, [0, 2, 4, 6, 8, 10], "cdr"))
+researchItems.push(new ResearchModifier("Snipe", "researchImages/snipe.png", 5, [0, 1, 2, 3, 4, 5], "critrate"))
+researchItems.push(new ResearchModifier("Resistance", "researchImages/resistance.png", 4, [0, 5, 10, 15, 20], "dmgtaken"))
+researchItems.push(new ResearchModifier("Agility", "researchImages/agility.png", 4, [0, 5, 10, 15, 20], "evasion"))
+researchItems.push(new ResearchModifier("Haste", "researchImages/haste.png", 4, [0, 5, 10, 15, 20], "movement"))
+researchItems.push(new ResearchModifier("Regeneration", "researchImages/regeneration.png", 4, [0, 0.05, 0.1, 0.15, 0.2], "hpregen"))
+researchItems.push(new ResearchModifier("Explorer", "researchImages/explorer.png", 4, [0, 20, 30, 40, 50], "pickup"))
+researchItems.push(new ResearchModifier("Arcane Effuse", "researchImages/arcaneeffuse.png", 4, [0, 3, 6, 9, 12], "size"))
+researchItems.push(new ResearchModifier("Concentration", "researchImages/concentration.png", 4, [0, 5, 10, 15, 20], "duration"))
+researchItems.push(new ResearchModifier("Recycle", "researchImages/recycle.png", 3, [0, 10, 15, 20], "recycle"))
+researchItems.push(new ResearchModifier("Analysis", "researchImages/analysis.png", 4, [0, 5, 10, 15, 20], "magicchoice"))
+researchItems.push(new ResearchModifier("Blessing", "researchImages/blessing.png", 3, [0, 10, 20, 30], "runeduration"))
+researchItems.push(new ResearchModifier("Awakening", "researchImages/awakening.png", 4, [0, 5, 10, 15, 20], "awakening"))
+researchItems.push(new ResearchModifier("Growth", "researchImages/growth.png", 3, [0, 2, 3, 4], "growth"))
+researchItems.push(new ResearchModifier("Support", "researchImages/support.png", 5, [0, 10, 20, 30, 40, 50], "support"))
+researchItems.push(new ResearchModifier("Luck", "researchImages/luck.png", 4, [0, 10, 15, 20, 25], "luck"))
+researchItems.push(new ResearchModifier("Loot", "researchImages/loot.png", 6, [0, 5, 8, 11, 14, 17, 20], "loot"))
 
 magicItems.push(new PassiveMagic("Intelligence", "passiveImages/intelligence.png", 5, [0, 10, 20, 30, 40, 50], "atk"))
 magicItems.push(new PassiveMagic("Fast Casting", "passiveImages/fastcasting.png", 3, [0, 5, 10, 15], "cdr"))
@@ -962,10 +1054,8 @@ artifactItems.push(new ClickableModifier("Eclipse", "artifactImages/eclipse.png"
 artifactItems.push(new ClickableModifier("Excalibur", "artifactImages/excalibur.png", {}, "legendary", 0, "excalibur"))
 artifactItems.push(new ClickableModifier("Nexus", "artifactImages/nexus.png", {}, "legendary", 0, "nexus"))
 artifactItems.push(new ClickableModifier("Dragon's Heart", "artifactImages/dragonheart.png", {}, "legendary", 2, "dragonheart"))
-artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
-artifactItems.push(new ClickableModifier("Creation", "artifactImages/creation.png", {}, "legendary", 0))
 
-document.querySelector("#magic-button").click()
+document.querySelector("#research-button").click()
 
 function calculateStats() {
     let stats = {"hp" : 200, "hpregen" : 0, "dmgtaken" : 1, "evasion" : 0, "movement" : 100, "critrate" : 3, "critstrike" : 200,
@@ -984,12 +1074,55 @@ function calculateStats() {
         }
         else if(modifier.stat == "vitality"){
             stats["hp"]+=modifier.values[modifier.fullCircleAmount]*2
-            stats["orbhp"]+=modifier.values[modifier.fullCircleAmount]
+            stats["orbhp"]+=modifier.values[modifier.fullCircleAmount]/2
         }
         else{
             stats[modifier.stat] += modifier.values[modifier.fullCircleAmount]
         }
     })
+
+    let researchPointCount = 0
+    researchItems.forEach((modifier) =>{
+        researchPointCount += modifier.fullCircleAmount
+        if(modifier.stat == "cdr"){
+            let value = modifier.values[modifier.fullCircleAmount]
+            stats["cdr"]*=1-value/100
+        }
+        else if(modifier.stat == "dmgtaken"){
+            let value = modifier.values[modifier.fullCircleAmount]
+            stats["dmgtaken"]*=1-value/100
+        }
+        else if(modifier.stat == "vitality"){
+            stats["hp"]+=modifier.values[modifier.fullCircleAmount]*2
+            stats["orbhp"]+=modifier.values[modifier.fullCircleAmount]/2
+        }
+        else if(modifier.stat == "recycle" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Retrieve "+modifier.values[modifier.fullCircleAmount]+"% more Mana when retrieving Mana")
+        }
+        else if(modifier.stat == "awakening" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Leveling up causes an Explosion around the characyer and restores "+modifier.values[modifier.fullCircleAmount]+"% HP")
+        }
+        else if(modifier.stat == "growth" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Every 20 levels increase ATK and Max HP by "+modifier.values[modifier.fullCircleAmount]+"%")
+        }
+        else if(modifier.stat == "support" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Increase the amount of Mana Orbs created around the character when the game starts by "+modifier.values[modifier.fullCircleAmount]+"%")
+        }
+        else if(modifier.stat == "luck" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Field items are created "+modifier.values[modifier.fullCircleAmount]+"% more often")
+        }
+        else if(modifier.stat == "loot" && modifier.fullCircleAmount > 0){
+            specialStats["unique"].push("Treasure Chests are created "+modifier.values[modifier.fullCircleAmount]+"% more frequently")
+        }
+        else if((modifier.stat == "magicchoice" || modifier.stat == "runeduration") && modifier.fullCircleAmount > 0){
+            if(!(modifier.stat in specialStats)){specialStats[modifier.stat] = 0}
+            specialStats[modifier.stat] += modifier.values[modifier.fullCircleAmount]
+        }
+        else{
+            stats[modifier.stat] += modifier.values[modifier.fullCircleAmount]
+        }
+    })
+    document.querySelector(".point-count").innerText = researchPointCount
 
     for(let modifierOrder = 0; modifierOrder < 3; modifierOrder++){
         activeModifiers.forEach((modifier) =>{
@@ -1325,7 +1458,7 @@ function calculateStats() {
         secondStats.item(4).querySelector("span").innerHTML = rounded(-100+stats["cdr"]*100, 1)+"%"
     }
     secondStats.item(5).querySelector("span").innerHTML = "+"+stats["mana"]+"%"
-    secondStats.item(6).querySelector("span").innerHTML = Math.round(stats["hp"]*0.15*stats["orbhp"]/100)
+    secondStats.item(6).querySelector("span").innerHTML = rounded(stats["hp"]*0.15*stats["orbhp"]/100, 1)
     secondStats.item(7).querySelector("span").innerHTML = "+"+stats["pickup"]+"%"
 
     let specialList = document.querySelector("#specialbox ul")
