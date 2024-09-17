@@ -1,5 +1,8 @@
 //NOTE: add ()', to the font
 
+var fixedArtifacts = false
+var fixedMagic = false
+
 function rounded(num, decimal=0){
     return Math.round(num*10**decimal)/10**decimal
 }
@@ -740,16 +743,6 @@ class ClickableModifier {
         span.innerText = name
         itemDiv.appendChild(span)
         document.querySelector("#leftbox-content").appendChild(itemDiv)
-        if(span.clientWidth > itemDiv.clientWidth*0.9){
-            let fontSize = window.getComputedStyle(span).fontSize
-            fontSize = fontSize.substring(0, fontSize.length-2)
-            let startHeight = span.clientHeight
-            while(span.clientWidth > itemDiv.clientWidth*0.96){
-                fontSize -= 1
-                span.style.fontSize = fontSize+"px"
-            }
-            span.style.marginTop = (startHeight-span.clientHeight)/2+"px"
-        }
         itemDiv.addEventListener("click", ()=>{
             if(this.active){
                 itemDiv.querySelector("img").style.opacity = 0.4
@@ -795,6 +788,21 @@ class ClickableModifier {
             calculateStats()
         })
     }
+
+    fixFontSize = ()=>{
+        console.log("penis?")
+        let span = this.element.querySelectorAll("span")[1]
+        if(span.clientWidth > this.element.clientWidth*0.9){
+            let fontSize = window.getComputedStyle(span).fontSize
+            fontSize = fontSize.substring(0, fontSize.length-2)
+            let startHeight = span.clientHeight
+            while(span.clientWidth > this.element.clientWidth*0.96){
+                fontSize -= 1
+                span.style.fontSize = fontSize+"px"
+            }
+            span.style.marginTop = (startHeight-span.clientHeight)/2+"px"
+        }
+    }
 }
 
 const researchItems = []
@@ -827,7 +835,11 @@ document.querySelector("#magic-button").addEventListener("click", () => {
     })
     magicItems.forEach((item)=>{
         item.element.style.display = "flex"
+        if(item instanceof ClickableModifier && !fixedMagic){
+            item.fixFontSize(), 100
+        }
     })
+    fixedMagic = true
     artifactItems.forEach((item)=>{
         item.element.style.display = "none"
     })
@@ -844,7 +856,11 @@ document.querySelector("#artifact-button").addEventListener("click", () => {
     })
     artifactItems.forEach((item)=>{
         item.element.style.display = "flex"
+        if(!fixedArtifacts){
+            item.fixFontSize(), 100
+        }
     })
+    fixedArtifacts = true
     fixTooltipPositions()
 })
 
