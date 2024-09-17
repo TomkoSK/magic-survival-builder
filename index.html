@@ -1,69 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="builder.css">
 </head>
 <body>
-    <div id="outerBox">
-    <main>
-        <img src="./magicImages/empyreanWrath.png">
-        <img src="./magicImages/telekineticSword.png">
-        <img src="./magicImages/crazedSpray.png">
-        <img src="./magicImages/terraCurrent.png">
-        <img src="./magicImages/warClimate.png">
-        <img src="./magicImages/demonEquation.png">
-        <img src="./magicImages/frenzy.png">
-        <img src="./magicImages/ghastlyRampage.png">
-        <img src="./magicImages/reaction.png">
-        <img src="./magicImages/vortex.png">
-        <img src="./magicImages/breathOfFire.png">
-        <img src="./magicImages/etherBlaze.png">
-        <img src="./magicImages/orbitalStrike.png">
-        <img src="./magicImages/neutronGeneration.png">
-        <img src="./magicImages/winterStorm.png">
-        <img src="./magicImages/plasmaRay.png">
-        <img src="./magicImages/lightningBolts.png">
-        <img src="./magicImages/photonExplosion.png">
-        <img src="./magicImages/inferno.png">
-        <img src="./magicImages/lightningCalibration.png">
-        <img src="./magicImages/furnace.png">
-        <img src="./magicImages/currentOverload.png">
-        <img src="./magicImages/greatFlood.png">
-        <img src="./magicImages/snowflakeBlossom.png">
-        <img src="./magicImages/rulerOfStorms.png">
-        <img src="./magicImages/overmind.png">
-        <img src="./magicImages/perpetualEngine.png">
-        <img src="./magicImages/gateOfCreation.png">
-        <img src="./magicImages/originExplosion.png">
-        <img src="./magicImages/prismSpray.png">
-        <img src="./magicImages/greatRift.png">
-        <img src="./magicImages/hyperion.png">
-        <img src="./magicImages/avatar.png">
-        <img src="./magicImages/heartOfLightning.png">
-        <img src="./magicImages/greatImpact.png">
-        <img src="./magicImages/frozenHeart.png">
-        <img src="./magicImages/meisnerEffect.png">
-        <img src="./magicImages/energyBombardment.png">
-        <img src="./magicImages/superCyclone.png">
-        <img src="./magicImages/teleport.png">
-        <img src="./magicImages/flameStorm.png">
-        <img src="./magicImages/pyrotechnics.png">
-        <img src="./magicImages/manaSpear.png">
-        <img src="./magicImages/gate.png">
-        <img src="./magicImages/magneticField.png">
-        <img src="./magicImages/blackDeath.png">
-        <img src="./magicImages/lightningBreath.png">
-        <img src="./magicImages/phoenix.png">
-        <img src="./magicImages/brandish.png">
-        <img src="./magicImages/blackHole.png">
-        <img src="./magicImages/genesis.png">
-        <img src="./magicImages/astrape.png">
-        <img src="./magicImages/supernova.png">
-    </main>
+  <main>
+    <div id="leftbox">
+      <div id="leftbox-navbar">
+        <a id="research-button">Research</a>
+        <a id="magic-button">Magic</a>
+        <a id="artifact-button">Artifacts</a>
+      </div>
+      <div id="leftbox-content">
+        <div class="leftbox-item research-border" id="research-point-count">
+          <span class="point-title">Points Used</span>
+          <span class="point-count">62</span>
+        </div>
+      </div>
     </div>
-    <script src="index.js"></script>
+    <div id="statbox">
+      <h2>Stats</h2>
+      <div id="stat-lists">
+        <ul>
+          <li>HP<span>test</span></li>
+          <li>HP Regen per sec.<span>test</span></li>
+          <li>Damage Taken<span>test</span></li>
+          <li>Evasion<span>test</span></li>
+          <li class="stat-divider">Movement Speed<span>test</span></li>
+          <li>Critical Strike Rate<span>test</span></li>
+          <li>Crit. Multiplier<span>test</span></li>
+          <li>All Magic Damage<span>test</span></li>
+        </ul>
+        <ul>
+          <li>ATK<span>test</span></li>
+          <li>Amplify ATK<span>test</span></li>
+          <li>All Magic Size<span>test</span></li>
+          <li>All Magic Duration<span>test</span></li>
+          <li class="stat-divider">All Magic Cooldown<span>test</span></li>
+          <li>Mana Acquisition<span>test</span></li>
+          <li>Life Orb HP Recovery<span>test</span></li>
+          <li>Item Pickup Range<span>test</span></li>
+        </ul>
+      </div>
+    </div>
+    <div id="specialbox">
+      <h2>Special Effects</h2>
+      <ul>
+      </ul>
+    </div>
+  </main>
+  <a href="combinations.html" id="combo-button">Magic Combinations Site</a>
+  <script src="builder.js"></script>
 </body>
-</html> 
+</html>
