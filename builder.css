@@ -317,3 +317,21 @@ main {
 #research-point-count .point-count {
     font-size: 1000%;
 }
+
+#combo-button {
+    text-align: center;
+    display: block;
+    width: 300px;
+    color: rgb(234,105,6);
+    background-color: black;
+    font-size: 250%;
+    border-radius: 5px;
+    padding: 2px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+#combo-button:hover{
+    color: white;
+}
