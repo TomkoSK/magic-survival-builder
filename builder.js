@@ -1,5 +1,3 @@
-//NOTE: add ()', to the font
-
 var fixedArtifacts = false
 var fixedMagic = false
 

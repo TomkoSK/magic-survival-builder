@@ -294,7 +294,7 @@ main {
     margin-left: 10px;
     padding: 30px;
     padding-top: 5px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #specialbox h2 {
