@@ -1448,7 +1448,7 @@ function calculateStats() {
     let statLists = document.querySelector("#stat-lists")
     let firstStats = statLists.children.item(0).children
     firstStats.item(0).querySelector("span").innerHTML = stats["hp"]
-    firstStats.item(1).querySelector("span").innerHTML = stats["hpregen"]+"%"
+    firstStats.item(1).querySelector("span").innerHTML = rounded(stats["hpregen"], 2)+"%"
     if(-100+stats["dmgtaken"]*100 >= 0){
         firstStats.item(2).querySelector("span").innerHTML = "+"+((rounded(-100+stats["dmgtaken"]*100, 1))+"%")
     }
