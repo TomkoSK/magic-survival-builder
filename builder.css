@@ -318,6 +318,11 @@ main {
     font-size: 1000%;
 }
 
+#bottom-header {
+    display:  flex;
+    gap: 15px;
+}
+
 #combo-button {
     text-align: center;
     display: block;
@@ -334,4 +339,22 @@ main {
 
 #combo-button:hover{
     color: white;
+}
+
+#suggestion-span {
+    text-align: center;
+    display: block;
+    width: 800px;
+    color: rgb(234,105,6);
+    background-color: black;
+    font-size: 250%;
+    border-radius: 5px;
+    padding: 2px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+#suggestion-span span {
+    color: rgb(170,224,54);
 }
