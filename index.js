@@ -259,6 +259,26 @@ function setMagic(magicName, value){
             usedMagic["spirit"] = value;
             usedMagic["energyBolt"] = value;
             break
+        case "blaster":
+            usedMagic["magicBolt"] = value;
+            usedMagic["flashShock"] = value;
+            break
+        case "hellfire":
+            usedMagic["incineration"] = value;
+            usedMagic["blizzard"] = value;
+            break
+        case "ageOfTheSun":
+            usedMagic["lavaZone"] = value;
+            usedMagic["satellite"] = value;
+            break
+        case "destroyer":
+            usedMagic["electricZone"] = value;
+            usedMagic["shield"] = value;
+            break
+        case "genocide":
+            usedMagic["arcaneRay"] = value;
+            usedMagic["spirit"] = value;
+            break
     }
 }
 
@@ -478,6 +498,26 @@ function updateMagic(){
                     break
                 case "supernova":
                     if(usedMagic["spirit"] || usedMagic["energyBolt"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "blaster":
+                    if(usedMagic["magicBolt"] || usedMagic["flashShock"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "hellfire":
+                    if(usedMagic["incineration"] || usedMagic["blizzard"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "ageOfTheSun":
+                    if(usedMagic["lavaZone"] || usedMagic["satellite"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "destroyer":
+                    if(usedMagic["electricZone"] || usedMagic["shield"]){element.style.filter = DISABLED_FILTER;}
+                    else{element.style.filter = "";}
+                    break
+                case "genocide":
+                    if(usedMagic["arcaneRay"] || usedMagic["spirit"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
                     break
             }
