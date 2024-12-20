@@ -10,7 +10,7 @@ ENABLED_OUTLINE = "green solid 3px";
 DISABLED_FILTER = "blur(9px)";
 }
 
-var usedMagic = {"magicBolt" : false, "fireball" : false, "thunderstorm" : false, "meteror" : false, "cyclone" : false, "electricShock" : false, 
+var usedMagic = {"magicBolt" : false, "fireball" : false, "thunderstorm" : false, "meteor" : false, "cyclone" : false, "electricShock" : false, 
 "energyBolt" : false, "incineration" : false, "blizzard" : false, "tsunami" : false, "spirit" : false, "satellite" : false, "arcaneRay" : false,
 "electricZone" : false, "frostNova" : false, "lavaZone" : false, "shield" : false, "cloaking" : false, "magicCircle" : false, "armageddon" : false,
 "flashShock" : false, "intelligence" : false
@@ -65,7 +65,7 @@ function setMagic(magicName, value){
             break
         case "warClimate":
             usedMagic["blizzard"] = value;
-            usedMagic["meteror"] = value;
+            usedMagic["meteor"] = value;
             break
         case "demonEquation":
             usedMagic["fireball"] = value;
@@ -305,7 +305,7 @@ function updateMagic(){
                     else{element.style.filter = "";}
                     break
                 case "warClimate":
-                    if(usedMagic["blizzard"] || usedMagic["meteror"]){element.style.filter = DISABLED_FILTER;}
+                    if(usedMagic["blizzard"] || usedMagic["meteor"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
                     break
                 case "demonEquation":
@@ -493,7 +493,7 @@ function updateMagic(){
                     else{element.style.filter = "";}
                     break
                 case "astrape":
-                    if(usedMagic["thunderstorm"] || usedMagic["meteror"]){element.style.filter = DISABLED_FILTER;}
+                    if(usedMagic["thunderstorm"] || usedMagic["meteor"]){element.style.filter = DISABLED_FILTER;}
                     else{element.style.filter = "";}
                     break
                 case "supernova":
